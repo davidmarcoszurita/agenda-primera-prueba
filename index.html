@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <!-- Pantalla de acceso -->
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <p class="brand">Agenda</p>
+      <h1 id="auth-title">Entrar</h1>
+      <p class="auth-sub" id="auth-sub">Tu agenda personal, en un solo lugar.</p>
+
+      <form id="auth-form">
+        <label>
+          Correo
+          <input type="email" id="auth-email" required autocomplete="email" />
+        </label>
+        <label>
+          Contraseña
+          <input type="password" id="auth-password" required autocomplete="current-password" minlength="6" />
+        </label>
+        <p id="auth-error" class="auth-error" hidden></p>
+        <button type="submit" id="auth-submit" class="btn-primary">Entrar</button>
+      </form>
+
+      <button id="auth-toggle" class="link-btn">¿No tienes cuenta? Crea una</button>
+    </div>
+  </section>
+
+  <!-- App principal -->
+  <section id="app-screen" class="app-screen" hidden>
+    <aside class="sidebar">
+      <p class="brand">Agenda</p>
+      <div class="mini-cal">
+        <div class="mini-cal-head">
+          <button id="prev-month" aria-label="Mes anterior">‹</button>
+          <span id="mini-cal-label"></span>
+          <button id="next-month" aria-label="Mes siguiente">›</button>
+        </div>
+        <div id="mini-cal-grid" class="mini-cal-grid"></div>
+      </div>
+      <button id="today-btn" class="link-btn">Ir a hoy</button>
+      <div class="sidebar-footer">
+        <span id="user-email"></span>
+        <button id="logout-btn" class="link-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h1 id="selected-date-label"></h1>
+        <button id="new-event-btn" class="btn-primary">Añadir evento</button>
+      </header>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <p>Nada anotado para este día.</p>
+        <button class="link-btn" id="empty-add-btn">Añadir el primero</button>
+      </div>
+
+      <ol id="event-list" class="event-list"></ol>
+    </main>
+  </section>
+
+  <!-- Modal de evento -->
+  <div id="event-modal" class="modal" hidden>
+    <div class="modal-card">
+      <h2 id="modal-title">Nuevo evento</h2>
+      <form id="event-form">
+        <input type="hidden" id="event-id" />
+        <label>
+          Título
+          <input type="text" id="event-title" required maxlength="120" />
+        </label>
+        <div class="row">
+          <label>
+            Fecha
+            <input type="date" id="event-date" required />
+          </label>
+          <label>
+            Hora inicio
+            <input type="time" id="event-start" required />
+          </label>
+          <label>
+            Hora fin
+            <input type="time" id="event-end" />
+          </label>
+        </div>
+        <label>
+          Notas
+          <textarea id="event-notes" rows="3" maxlength="500"></textarea>
+        </label>
+        <p id="event-error" class="auth-error" hidden></p>
+        <div class="modal-actions">
+          <button type="button" id="delete-event-btn" class="link-btn danger" hidden>Eliminar</button>
+          <div class="modal-actions-right">
+            <button type="button" id="cancel-event-btn" class="btn-ghost">Cancelar</button>
+            <button type="submit" class="btn-primary">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
