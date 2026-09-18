@@ -1,0 +1,16 @@
+{
+  "name": "agenda-supabase",
+  "version": "1.0.0",
+  "description": "Agenda multiusuario con Supabase, lista para desplegar en Railway",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
